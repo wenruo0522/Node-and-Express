@@ -4,6 +4,7 @@ const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
     // normalize url by removing querystring, optional trailing slash, and make it lowercase
+    // for example: '/about?key=123'.replace(/\/?(?:\?.*)?$/, '') = '/about'
     const path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase()
     switch(path) {
         case '':
