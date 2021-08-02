@@ -1,7 +1,6 @@
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
 const app = express()
-const port = process.env.PROT || 3000
 
 // the following is needed to use views
 app.engine('handlebars', expressHandlebars({
@@ -9,15 +8,18 @@ app.engine('handlebars', expressHandlebars({
 }))
 app.set('view engine', 'handlebars')
 
-// see the views/about.hbs file for the contents of this view
-app.get('/about', (req, res) => {
-    res.render('about')
+// see the views/error.hbs file for the contents of this view
+app.get('/error', (req, res) => {
+    res.status(500).render('error')
 })
 
 app.get('*', (req, res) => {
-    res.send(`Check out our "<a href="/about">About</a>" page!`)
+    res.send('Check out our <a href="/error">error</a> page!')
 })
 
+const port = process.env.PORT || 3000
 app.listen(port, () => {
-    console.log(`\nnavigate to http://localhost:${port}/about\n`)
+    console.log(`\nnavigate to http://localhost:${port}/error\n`)
 })
+
+
