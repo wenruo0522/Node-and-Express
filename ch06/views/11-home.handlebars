@@ -34,7 +34,7 @@
     const api = {
         post(path, data) {
             const body = typeof data === 'object' ? JSON.stringify(data) : data
-            const header = {
+            const headers = {
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
             }
@@ -46,8 +46,8 @@
             })
         }
     }
-
-    document.querySelector('form').addEventListener('submit', event => {
+    // intercept form submission
+    document.querySelector('form').addEventListener('submit', event => {m
         const formData = new FormData(event.target)
         if (!formData.get('useAjax')) {
             return
@@ -61,7 +61,7 @@
 
         api.post('/process-contact', data).then(() => {
             window.location = '/thank-you'
-        }).then(() => {
+        }).catch(() => {
             window.location = '/contact-error'
         })
     })

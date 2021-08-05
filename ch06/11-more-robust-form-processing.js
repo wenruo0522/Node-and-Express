@@ -27,6 +27,8 @@ app.get('*', (req, res) => {
 
 app.post('/process-contact', (req, res) => {
     try {
+        // here's where we would try to save contact to database or other
+        // persistence mechanism...for now, we'll just simulate an error
         if (req.body.simulateError) {
             throw new Error(`error saving contact!`)
         }
@@ -42,7 +44,8 @@ app.post('/process-contact', (req, res) => {
             }
         })
     } catch (err) {
-        console.Error(`error processing contact from ${req.body.name} <${req.body.email}>`)
+        // here's where we would handle any persistence failure
+        console.error(`error processing contact from ${req.body.name} <${req.body.email}>`)
         res.format({
             'text/html': () => {
                 res.redirect(303, '/contact-error')
