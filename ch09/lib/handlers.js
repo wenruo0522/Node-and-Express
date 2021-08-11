@@ -17,7 +17,7 @@ exports.home = (req, res) => res.render('home')
 
 exports.newsletterSignup = (req, res) => {
     // we will learn about CSRF later...for now, we just provide a dummy value
-    res.render('newsletter-signup', { csrf: 'CSRF token goes here'})
+    res.render('newsletter-signup', { csrf: 'CSRF token goes here' })
 }
 
 exports.newsletterSignupProcess = (req, res) => {
@@ -49,7 +49,12 @@ exports.newsletterSignupProcess = (req, res) => {
         return res.redirect(303, '/newsletter-archive')
     })
 }
-exports.newsletterSignupThankYou = (req, res) => res.render('news')
+exports.newsletterSignupThankYou = (req, res) => res.render('newsletter-signup-thank-you')
+exports.newsletterArchive = (req, res) => res.render('newsletter-archive')
+
+exports.notFound = (req, res) => res.render('404')
+
+exports.serverError = (req, res) => res.render('500')
 
 
 
